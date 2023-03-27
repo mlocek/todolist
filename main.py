@@ -1,7 +1,7 @@
 todos = []
 
-def get_todos():
-    with open('todos.txt', 'r') as file:
+def get_todos(filepath):
+    with open(filepath, 'r') as file:
         todos = file.readlines()
     return todos
 
@@ -13,7 +13,7 @@ while True:
     if user_action.startswith("add"):
         todo = user_action[4:]
 
-        get_todos()
+        get_todos("todos.txt")
 
         todos.append(todo + '\n')
 
@@ -22,7 +22,7 @@ while True:
 
     elif user_action.startswith("show"):
 
-        todos = get_todos()
+        todos = get_todos("todos.txt")
 
 
         for index, item in enumerate(todos):
@@ -37,7 +37,7 @@ while True:
 
             number = number - 1
 
-            todos = get_todos()
+            todos = get_todos("todos.txt")
 
             new_todo = input("Enter new todo:")
             todos[number] = new_todo + '\n'
@@ -53,7 +53,7 @@ while True:
         try:
             number = int(user_action[9:])
             
-            todos = get_todos()
+            todos = get_todos("todos.txt")
             index = number - 1
             todo_to_remove = todos[index].strip('\n')
             todos.pop(index)
